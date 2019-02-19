@@ -4,8 +4,7 @@ public class BagTraceExample {
 
 	public static void main(String[] args) {
 		BagInterface<String> animalBag = new ArrayBag();
-		
-			
+
 		System.out.println(animalBag.isEmpty());
 		animalBag.add("alligator");
 		animalBag.add("bear");
@@ -31,6 +30,6 @@ public class BagTraceExample {
 		System.out.println(animalBag.getCurrentSize());
 		System.out.println(animalBag.remove());
 
-				
+
 	}
 }

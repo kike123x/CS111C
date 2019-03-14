@@ -1,6 +1,6 @@
 /**
  * A linked implemention of the ADT list.
- * 
+ *
  * @author Frank M. Carrano
  * @author Timothy M. Henry
  * @version 5.0
@@ -200,6 +200,21 @@ public class LList<T> implements ListInterface<T> {
 		 */
 		return smallerList;
 
+	}
+
+	// midterm
+	public void insertAfterEvery(T listElement, T newElement) {
+		Node currentNode = firstNode;
+		while (currentNode != null) {
+			if (currentNode.data.equals(listElement)) {
+				Node newNode = new Node(newElement, currentNode.next);
+				currentNode.next = newNode;
+				numberOfEntries++;
+				currentNode = currentNode.next.next;
+			} else {
+				currentNode = currentNode.next;
+			}
+		}
 	}
 
 	private class Node {

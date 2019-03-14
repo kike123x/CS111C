@@ -1,3 +1,5 @@
+// import java.lang.Math;
+
 /**
     A class of bags whose entries are stored in a fixed-size array.
     @author Frank M. Carrano, Timothy M. Henry
@@ -263,6 +265,17 @@ public final class ArrayBag<T extends Comparable<? super T>> implements BagInter
 			}
 		}
 		return newBag;
+	}
+
+	// midterm
+	public T getAnEntry() {
+		if (numberOfEntries == 0) {
+			return null;
+		}
+		double random = Math.random();
+		random = random * numberOfEntries;
+		int index = (int) random;
+		return bag[index];
 	}
 
 } // end ArrayBag

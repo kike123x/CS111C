@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Searches {
 
@@ -29,16 +30,16 @@ public class Searches {
 	}
 
 	private static int comparisonCountLinearRecursive = 0;
-	
+
 	private static int linearSearchRecursiveHelper(int[] numbers, int target, int first, int last) {
 		comparisonCountLinearRecursive++;
 		if (first > last) { // indices cross over- it's not here
 			return -1;
 		} else if (target == numbers[first]) { // we found it!
-			return first; 
+			return first;
 		} else { // keep looking
 			return linearSearchRecursiveHelper(numbers, target, first + 1, last);
-			
+
 		}
 	}
 
@@ -96,6 +97,7 @@ public class Searches {
 
 	private static int binarySearchRecursiveHelper(int[] numbers, int target, int first, int last) {
 		int mid = ((last - first) / 2) + first;
+		System.out.println("First: " + first + " Last: " + last + " Mid: " + mid );
 		comparisonCountBinaryRecursive++;
 		if (first > last) {
 			return -1; // indices cross over
@@ -110,4 +112,16 @@ public class Searches {
 		}
 	}
 
+	public static ArrayList<Integer> findIndicesRecursiveSorted(Comparable[] array, Comparable target) {
+		ArrayList<Integer> result = new ArrayList();
+		return findIndicesRecursiveSortedHelper(array, target, result, 0);
+	}
+
+	private static ArrayList<Integer> findIndicesRecursiveSortedHelper(Comparable[] array, Comparable target, ArrayList<Integer> result, int index) {
+		if (index >= array.length || array[index].compareTo(target) > 0) return result;
+		else if (array[index].equals(target)) {
+			result.add(index);
+		}
+		return findIndicesRecursiveSortedHelper(array, target, result, index+1);
+	}
 }

@@ -1,11 +1,10 @@
-import java.util.Arrays;
 
 public class ListTraceExample {
 
 	public static void main(String[] args) {
 		ListInterface<String> animalList = new AList<String>();
 
-		
+
 		System.out.println(animalList.isEmpty());
 		animalList.add("alligator");
 		animalList.add("bear");
@@ -14,7 +13,7 @@ public class ListTraceExample {
 		animalList.add("lemur");
 		animalList.add(3, "elephant");
 		animalList.add(1, "koala");
-		animalList.add("dog");		
+		animalList.add("dog");
 		System.out.println(animalList.isEmpty());
 		System.out.println(animalList.getLength());
 		System.out.println(animalList.remove(1));
@@ -27,7 +26,7 @@ public class ListTraceExample {
 		animalList.clear();
 		System.out.println(animalList.getLength());
 
-	
+
 
 	}
 

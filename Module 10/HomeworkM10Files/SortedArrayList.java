@@ -38,6 +38,7 @@ public class SortedArrayList<T extends Comparable<? super T>> implements
 		// position until proper sorted position for newEntry is found
 		for (fromIndex = length - 1, toIndex = fromIndex + 1; (fromIndex >= 0)
 				&& (newEntry.compareTo(list[fromIndex]) < 0); toIndex--, fromIndex--) {
+					// System.out.println("not O(1)");
 			list[toIndex] = list[fromIndex];
 		} // end for
 
@@ -80,7 +81,8 @@ public class SortedArrayList<T extends Comparable<? super T>> implements
 	public T remove(int givenPosition) {
 		T result = null; // return value
 
-		if ((givenPosition >= 1) && (givenPosition <= length)) // test catches empty list
+		if ((givenPosition >= 1) && (givenPosition <= length)) // test catches
+																// empty list
 		{
 			assert !isEmpty();
 
@@ -104,6 +106,7 @@ public class SortedArrayList<T extends Comparable<? super T>> implements
 
 		length = 0; // no need to create a new array
 	} // end clear
+
 
 
 	public T getEntry(int givenPosition) {
@@ -136,7 +139,29 @@ public class SortedArrayList<T extends Comparable<? super T>> implements
 		System.out.println();
 	} // end display
 
-
+	public static <U extends Comparable<U>> SortedArrayList<U> createMergeList(SortedArrayList<U> listA, SortedArrayList<U> listB) {
+		SortedArrayList<U> mergedList = new SortedArrayList<U>(listA.getLength() + listB.getLength());
+		int indexA = 0;
+		int indexB = 0;
+		while (indexA < listA.length && indexB < listB.length) {
+			if (listA.list[indexA].compareTo(listB.list[indexB]) > 0) {
+				mergedList.add(listB.list[indexB]);
+				indexB++;
+			} else {
+				mergedList.add(listA.list[indexA]);
+				indexA++;
+			}
+		}
+		while(indexA < listA.length) {
+			mergedList.add(listA.list[indexA]);
+			indexA++;
+		}
+		while (indexB < listB.length) {
+			mergedList.add(listB.list[indexA]);
+			indexB++;
+		}
+		return mergedList;
+	}
 
 	/**
 	 * @return true if the array of list entries is full, that is, if the length

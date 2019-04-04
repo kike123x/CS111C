@@ -1,4 +1,3 @@
-import java.util.*;
 
 public class BagClientExample {
 
@@ -11,11 +10,11 @@ public class BagClientExample {
 		// quizScoreBag.add(80);
 		// quizScoreBag.add(90);
 		// quizScoreBag.add(10);
-		
+
 		// System.out.println(Arrays.toString(quizScoreBag.toArray()));
 		// removeLowestScore(quizScoreBag);
 		// System.out.println(Arrays.toString(quizScoreBag.toArray()));
-		
+
 		// BagInterface<String> wordBag = new ArrayBag<String>();
 		// wordBag.add("username1");
 		// wordBag.add("email1@mail.com");
@@ -25,7 +24,7 @@ public class BagClientExample {
 		// wordBag.add("email3@mail.com");
 		// printStringsWithCharacter(wordBag, '@');
 		// System.out.println(Arrays.toString(wordBag.toArray()));
-		
+
 		BagInterface<String> statesBag = new ArrayBag<String>();
 
 		statesBag.add("alaska");
@@ -78,33 +77,33 @@ public class BagClientExample {
 		}
 
 	}
-	
+
 	public static void printStringsWithCharacter(BagInterface<String> wordBag, char targetChar) {
 		BagInterface<String> tempBag = new ArrayBag<>();
-		
+
 		while(!wordBag.isEmpty()) {
 			String word = wordBag.remove();
-			
+
 			if(word.indexOf(targetChar) >= 0) {
 				System.out.println(word);
 			}
-			
+
 			tempBag.add(word);
 		}
-		
+
 		while(!tempBag.isEmpty()) {
 			wordBag.add(tempBag.remove());
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
 
 }

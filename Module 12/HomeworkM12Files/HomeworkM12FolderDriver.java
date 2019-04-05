@@ -38,7 +38,7 @@ public class HomeworkM12FolderDriver {
     	folder4b.addFile(new File("File4b-1"));
     	folder4b.addFile(new File("File4b-2"));
     	folder4b.addFile(new File("File4b-3"));
-    	
+
     	Folder topFolder = new Folder("TopFolder");
     	topFolder.addFolder(folder1);
     	topFolder.addFolder(folder2);
@@ -49,7 +49,7 @@ public class HomeworkM12FolderDriver {
     	printFolderContentsWithStack(topFolder);
 
 	}
-	
+
 	public static void printFolderContentsRecursive(Folder topFolder) {
 		printFolderContentsHelper(topFolder, 0);
 	}
@@ -64,13 +64,13 @@ public class HomeworkM12FolderDriver {
 			}
 			System.out.println(topFolder.getFileList()); // small part solving now- print the files in the current folder
 		}
-		
+
 		List<Folder> subfolderList = topFolder.getFolderList();
-		for(Folder subfolder : subfolderList) { 
+		for(Folder subfolder : subfolderList) {
 			printFolderContentsHelper(subfolder, indentationIndex+1); // recursive call
 		}
 
-		
+
 		// implicit base case- happens when a folder has no more subfolders- the recursion will end
 
 	}
@@ -80,8 +80,16 @@ public class HomeworkM12FolderDriver {
 		folderStack.push(topFolder);
 
 		while(!folderStack.isEmpty()) {
-			// YOUR CODE HERE!
-			return; // delete this- it's here only so you don't get an infinite loop if you run this without modification			
+			Folder current = folderStack.pop();
+			System.out.println(current);
+			List<File> fileList = current.getFileList();
+			if (!fileList.isEmpty())
+				System.out.println(fileList);
+			List<Folder> folderList = current.getFolderList();
+			for (int index = folderList.size() - 1; index >= 0; index--) {
+				Folder subFolder = folderList.get(index);
+				folderStack.push(subFolder);
+			}
 		}
 	}
 

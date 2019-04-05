@@ -141,24 +141,28 @@ public class SortedArrayList<T extends Comparable<? super T>> implements
 
 	public static <U extends Comparable<U>> SortedArrayList<U> createMergeList(SortedArrayList<U> listA, SortedArrayList<U> listB) {
 		SortedArrayList<U> mergedList = new SortedArrayList<U>(listA.getLength() + listB.getLength());
+		int index = 0;
 		int indexA = 0;
 		int indexB = 0;
 		while (indexA < listA.length && indexB < listB.length) {
 			if (listA.list[indexA].compareTo(listB.list[indexB]) > 0) {
-				mergedList.add(listB.list[indexB]);
+				mergedList.list[index] = listB.list[indexB];
 				indexB++;
 			} else {
-				mergedList.add(listA.list[indexA]);
+				mergedList.list[index] = listA.list[indexA];
 				indexA++;
 			}
+			index++;
 		}
 		while(indexA < listA.length) {
-			mergedList.add(listA.list[indexA]);
+			mergedList.list[index] = listA.list[indexA];
 			indexA++;
+			index++;
 		}
 		while (indexB < listB.length) {
-			mergedList.add(listB.list[indexA]);
+			mergedList.list[index] = listB.list[indexB];
 			indexB++;
+			index++;
 		}
 		return mergedList;
 	}

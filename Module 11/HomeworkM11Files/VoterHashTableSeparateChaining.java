@@ -24,6 +24,7 @@ public class VoterHashTableSeparateChaining {
 		} else {
 			Node currentNode = hashTable[hashLocation];
 			while (currentNode != null) {
+				// Overrided equals method in Voter class
 				if (voterToAdd.equals(currentNode.getData())) {
 					return false;
 				} else if (currentNode.getNextNode() != null) {

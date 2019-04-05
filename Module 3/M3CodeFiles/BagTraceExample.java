@@ -2,7 +2,7 @@
 public class BagTraceExample {
 
 	public static void main(String[] args) {
-		BagInterface<String> animalBag = new ArrayBag();
+		BagInterface<String> animalBag = new ArrayBag<>();
 
 		System.out.println(animalBag.isEmpty());
 		animalBag.add("alligator");

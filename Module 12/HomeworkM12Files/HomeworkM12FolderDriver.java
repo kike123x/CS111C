@@ -43,10 +43,21 @@ public class HomeworkM12FolderDriver {
     	topFolder.addFolder(folder1);
     	topFolder.addFolder(folder2);
     	topFolder.addFolder(folder3);
-    	topFolder.addFolder(folder4);
+			topFolder.addFolder(folder4);
 
-    	printFolderContentsRecursive(topFolder);
-    	printFolderContentsWithStack(topFolder);
+			printFolderContentsRecursive(topFolder);
+			printFolderContentsWithStack(topFolder);
+
+			// Folder newFolder = new Folder("newFolder");
+			// newFolder.addFolder(topFolder);
+			// Folder sampleFolder = new Folder("Hi");
+			// newFolder.addFile(new File("Hello"));
+			// newFolder.addFolder(sampleFolder);
+			// sampleFolder.addFolder(topFolder);
+			// newFolder.addFolder(topFolder);
+
+    	// printFolderContentsRecursive(newFolder);
+    	// printFolderContentsWithStack(newFolder);
 
 	}
 
@@ -78,17 +89,46 @@ public class HomeworkM12FolderDriver {
 	public static void printFolderContentsWithStack(Folder topFolder) {
 		Stack<Folder> folderStack = new Stack<Folder>();
 		folderStack.push(topFolder);
+		// keeps track of how many folders at each level/branch
+		Stack<Integer> levels = new Stack<Integer>();
+		levels.push(1); // 1 topFolder at level 1
 
-		while(!folderStack.isEmpty()) {
-			Folder current = folderStack.pop();
-			System.out.println(current);
-			List<File> fileList = current.getFileList();
-			if (!fileList.isEmpty())
-				System.out.println(fileList);
-			List<Folder> folderList = current.getFolderList();
-			for (int index = folderList.size() - 1; index >= 0; index--) {
-				Folder subFolder = folderList.get(index);
-				folderStack.push(subFolder);
+		while (!folderStack.isEmpty()) {
+			// if no more folders at current level, proceeds to its parent folder's sibling
+			if (levels.peek().equals(0)){
+				levels.pop();
+			} else {
+				// prints current folder name
+				Folder current = folderStack.pop();
+				for (int count = 1; count < levels.size(); count++) {
+					System.out.print("   ");
+				}
+				System.out.println(current);
+
+				// prints files in current folder
+				List<File> fileList = current.getFileList();
+				if (!fileList.isEmpty()) {
+					for (int count = 1; count < levels.size() + 1; count++) {
+						System.out.print("   ");
+					}
+					System.out.println(fileList);
+				}
+
+				// decreases count of remaining folders to print at this level
+				Integer remainCount = levels.pop();
+				remainCount--;
+				levels.push(remainCount);
+
+				// handles subfolders of the current folder
+				List<Folder> folderList = current.getFolderList();
+				if (!folderList.isEmpty()) {
+					for (int index = folderList.size() - 1; index >= 0; index--) {
+						Folder subFolder = folderList.get(index);
+						folderStack.push(subFolder);
+					}
+					// adds a new level of subfolders
+					levels.push(folderList.size());
+				}
 			}
 		}
 	}

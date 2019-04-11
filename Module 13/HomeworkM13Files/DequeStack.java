@@ -8,7 +8,9 @@ public final class DequeStack<T> implements StackInterface<T> {
   }
 
   public void push(T newEntry) {
-    deque.addToFront(newEntry);
+    if (newEntry != null) {
+      deque.addToFront(newEntry);
+    }
   }
 
   public T pop() {

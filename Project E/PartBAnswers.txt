@@ -1,0 +1,7 @@
+1. The tree built from the shuffled list had the fastest processing because the randomization (most likely) ensured that new entries are added onto both sides of the tree, as opposed to the trees in Section A and C where one side of the tree recursively dominates the other. In an average case, traversing a “balanced” tree where both sides has close to the same number of nodes requires less iteration and has a runtime of O(log n), where as the “unbalanced” trees has a runtime closer to O(n), with n being the number of nodes in the tree.
+
+2. The descending list recursively added new entries to the left of the leaf on the lowest level of the tree, resulting in a tree with a height equals to the number of entries. The tree built from the ascending list has a height equals to the number of unique entries in the list (with some exceptions if the list contains an entry with a abnormally high frequency). The ascending list added a new unique entry to the right of the right-most leaf, and the duplicates were added to the left of whichever node also containing a copy of that duplicate. It makes sense that ascending tree (A) is faster because it traverses through only the number of unique entries, whereas the descending tree (C) traverses through every entry.
+
+3. The tree built from the shuffled list is processed faster because it has a runtime of O(log n) and the shuffled list has a processing runtime of O(n).
+
+4. A binary search tree is more efficient when its branch and sub-branches are balanced.

@@ -80,7 +80,7 @@ public class ProjectEPartBDriver {
 		// set limitRecordsRead to false if you want to read in the whole data file
 		// if you do this, I recommend commenting out Section C above
 		boolean limitRecordsRead = true;
-		int maxRecords = 100000;
+		int maxRecords = 40000;
 
 		int numRecordsReadIn = 0;
 		while (fileScan.hasNextLine() &&

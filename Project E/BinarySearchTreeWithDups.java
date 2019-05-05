@@ -122,23 +122,37 @@ public class BinarySearchTreeWithDups<T extends Comparable<? super T>> extends B
 	// YOUR EXTRA CREDIT CODE HERE! THIS METHOD MUST BE O(n).
 	// YOU ARE ALLOWED TO USE A HELPER METHOD. THE METHOD CAN BE ITERATIVE OR RECURSIVE.
 	public int countUniqueValues() {
-		BinaryNode<T> rootNode = getRootNode();
-		Set<T> set = new HashSet<T>();
-		Stack<BinaryNode<T>> nodeStack = new Stack<BinaryNode<T>>();
-		nodeStack.push(rootNode);
-		while (!nodeStack.empty()) {
-			BinaryNode<T> node = nodeStack.pop();
-			set.add(node.getData());
-			BinaryNode<T> left = node.getLeftChild();
-			BinaryNode<T> right = node.getRightChild();
-			if (left != null) {
-				nodeStack.push(left);
-			}
-			if (right != null) {
-				nodeStack.push(right);
+		/* USING AN ITERATOR */
+		int count = 0;
+		Iterator<T> iterator = getInorderIterator();
+		T last = null;
+		while (iterator.hasNext()) {
+			T data = iterator.next();
+			if (!data.equals(last)) {
+				count++;
+				last = data;
 			}
 		}
-		return set.size();
+		return count;
+
+		/* USING A SET TO KEEP TRACK */
+		// BinaryNode<T> rootNode = getRootNode();
+		// Set<T> set = new HashSet<T>();
+		// Stack<BinaryNode<T>> nodeStack = new Stack<BinaryNode<T>>();
+		// nodeStack.push(rootNode);
+		// while (!nodeStack.empty()) {
+		// 	BinaryNode<T> node = nodeStack.pop();
+		// 	set.add(node.getData());
+		// 	BinaryNode<T> left = node.getLeftChild();
+		// 	BinaryNode<T> right = node.getRightChild();
+		// 	if (left != null) {
+		// 		nodeStack.push(left);
+		// 	}
+		// 	if (right != null) {
+		// 		nodeStack.push(right);
+		// 	}
+		// }
+		// return set.size();
 	}
 
 	public int getLeftHeight() {
